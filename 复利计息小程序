@@ -1,0 +1,42 @@
+<!--index.wxml-->
+<view class='box'>
+  <view class='title'>求五年后的本息总和</view>
+  <view>
+    <input placeholder='请输入本金' type='number' bindblur='startNum'></input>
+    <input placeholder='请输入利率' type='number' bindblur='endNum'></input>
+  </view>
+  <view>五年后的本息总和：{{sum}} </view>
+  <button type='primary' bindtap='calc'>求和</button>
+</view>
+======================================
+<view>电科19-1-10 胡佳辉</view>
+<view>少年有梦 不应止于心动 更应付诸行动</view>
+
+/**index.wxss**/
+input {
+  border-bottom: 1px solid blueviolet; 
+  margin: 20px 0;
+}
+button {
+  margin-top: 20px;
+}
+
+// index.js
+var start, end, sum; //定义起点数、终点数和求和结果三个全局变量
+Page({
+  startNum: function(e) {
+    start = parseInt(e.detail.value); //将input组件value值转换为整数并赋值
+  },
+  endNum: function(e) {
+    end = parseFloat(e.detail.value); 
+  },
+  calc: function() {
+    sum = start;
+    for (var i = 1; i <= 5; i++) {
+      sum = (sum+sum*end*1); //利用for循环求和
+    }
+    this.setData({
+      sum: sum ,
+    })
+  }
+})
