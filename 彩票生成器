@@ -1,0 +1,44 @@
+<!--index.wxml-->
+<view class="box">
+  <view class='title'>彩票生成器</view>
+  <view>产生的彩票数列为：</view>
+  <view wx:for="{{rand}}">{{item}}</view>
+  <button type='primary' bindtap='newRand'>产生新的彩票号码</button>
+</view>
+======================================
+<view>电科19-1-10 胡佳辉</view>
+<view>少年有梦 不应止于心动 更应付诸行动</view>
+
+// index.js
+var rand, sum;
+function createRand() {
+  rand = []; //初始化数组变量
+  for (var i = 0; i < 7; i++) {
+var r = (Math.random() * 32).toFixed(0) * 1; 
+rand[i]=r;
+    for (var j=0;j<i;j++){
+      if (rand[j]==r){i=i-1;}
+    }//不重复
+    rand.push(r); //将产生的随机数添加到数组中
+  
+    console.log(rand[i]); //在控制台显示数组元素
+  }
+  console.log(sum);  
+};
+
+Page({
+  onLoad: function() {
+    createRand(); //调用产生随机数函数
+    this.setData({
+      rand: rand,
+      sum: sum
+    })
+  },
+  newRand: function() {
+    createRand(); //调用产生随机数函数
+    this.setData({
+      rand: rand,
+      sum: sum
+    })
+  }
+})
